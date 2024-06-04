@@ -9,6 +9,8 @@ void servo_setup()
 
     servo1.attach(servo1Pin);
     servo2.attach(servo2Pin);
+    servo1.write(0);
+    servo2.write(0);
 }
 
 void servo_ccw()
