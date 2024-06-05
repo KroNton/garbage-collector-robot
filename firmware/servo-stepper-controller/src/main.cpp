@@ -46,12 +46,14 @@ void setup()
   ir_setup();
   nh.subscribe(servo_motors_sub);
   nh.subscribe(stepper_motors_sub);
+  nh.advertise(ir_pub);
+   ir_msg.data=false;
 }
 
 void loop()
 {
 
-  if (ir_obstacle()==HIGH)
+  if (ir_obstacle()==LOW)
   {
      ir_msg.data=true;
   }

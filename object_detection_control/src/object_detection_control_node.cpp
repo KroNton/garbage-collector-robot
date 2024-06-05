@@ -28,7 +28,7 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
 
     // Create a publisher object
-    ros::Publisher motor_pub = n.advertise<std_msgs::String>("motors_control", 1000);
+    ros::Publisher motor_pub = n.advertise<std_msgs::String>("/servo_motors_control", 1000);
 
     // Create a subscriber object
     ros::Subscriber darknet_sub = n.subscribe("/darknet_ros/bounding_boxes", 1000, darknetCallback);
