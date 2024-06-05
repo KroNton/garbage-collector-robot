@@ -4,13 +4,15 @@
 #include <geometry_msgs/Twist.h>
 #include <std_msgs/Float64.h>
 #include <std_msgs/String.h>
+#include <std_msgs/Bool.h>
 #include <servo_control.h>
 #include <stepper_control.h>
+#include <ir_sensor.h>
 
 #define COMMAND_RATE 5 // hz
 
-String stepper_motors_command = " ";
-String servo_motors_command = " ";
+
+
 
 void stepperMotorscommandCallback(const std_msgs::String &cmd_msg)
 {
@@ -29,6 +31,10 @@ ros::NodeHandle nh;
 ros::Subscriber<std_msgs::String> servo_motors_sub("/servo_motors_control", &servoMotorscommandCallback);
 ros::Subscriber<std_msgs::String> stepper_motors_sub("/stepper_motors_control", &stepperMotorscommandCallback);
 
+std_msgs::Bool ir_msg;
+ros::Publisher ir_pub("ir_data", &ir_msg);
+
+
 void setup()
 {
 
@@ -37,13 +43,16 @@ void setup()
 
   servo_setup();
   stepper_setup();
-
+  ir_setup();
   nh.subscribe(servo_motors_sub);
   nh.subscribe(stepper_motors_sub);
 }
 
 void loop()
 {
+
+
+  ir_msg=ir_obstacle();
 
   if (servo_motors_command == "servo_ccw")
   {
@@ -65,6 +74,12 @@ void loop()
   {
     stepper_cw();
   }
+
+
+
+  ir_pub.publish( &ir_msg );
+
+
 
   nh.spinOnce();
 

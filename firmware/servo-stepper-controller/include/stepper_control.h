@@ -3,9 +3,9 @@
 #define stepPin 3
 #define dirPin 4
 
-#define stepper_steps 400
+#define stepper_steps 2000
 #define stepper_delay 700
-
+String stepper_motors_command = " ";
 void stepper_setup()
 {
   // Sets the two pins as Outputs
@@ -23,6 +23,7 @@ void stepper_ccw()
     digitalWrite(stepPin, LOW);
     delayMicroseconds(stepper_delay);
   }
+  stepper_motors_command = " ";
 }
 
 void stepper_cw()
@@ -36,4 +37,5 @@ void stepper_cw()
     digitalWrite(stepPin, LOW);
     delayMicroseconds(stepper_delay);
   }
+  stepper_motors_command = " ";
 }
