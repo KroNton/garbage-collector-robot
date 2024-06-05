@@ -51,8 +51,17 @@ void setup()
 void loop()
 {
 
+  if (ir_obstacle()==HIGH)
+  {
+     ir_msg.data=true;
+  }
+  else
+  {
+    ir_msg.data=false;
+  }
+  
+  
 
-  ir_msg=ir_obstacle();
 
   if (servo_motors_command == "servo_ccw")
   {
