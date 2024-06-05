@@ -20,12 +20,12 @@ void servo_ccw()
 {
     servo1.write(180);
     servo2.write(0);
-    servo_motors_command = " "
+    servo_motors_command = " ";
 }
 
 void servo_cw()
 {
     servo1.write(0);
     servo2.write(180);
-    servo_motors_command = " "
+    servo_motors_command = " ";
 }
