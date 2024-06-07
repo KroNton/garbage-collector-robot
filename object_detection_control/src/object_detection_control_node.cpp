@@ -43,7 +43,7 @@ int main(int argc, char **argv)
 
         if (detected_object == "bottle")
         {
-            if ((ros::Time::now() - last_detection_time) >= ros::Duration(120)) // 2 minutes = 120 seconds
+            if ((ros::Time::now() - last_detection_time) >= ros::Duration(60)) // 2 minutes = 120 seconds
             {
                 msg.data = "servo_cw";
                 ROS_INFO("%s", msg.data.c_str());
